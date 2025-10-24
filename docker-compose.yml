@@ -3,7 +3,7 @@ version: '3.8'
 services:
   elasticsearch:
     image: elasticsearch:9.1.0
-    container_name: banking-logs-elasticsearch
+    container_name: logintel-elasticsearch
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
@@ -23,7 +23,7 @@ services:
       - elasticsearch_data:/usr/share/elasticsearch/data
       - ./elasticsearch/templates:/usr/share/elasticsearch/templates:ro
     networks:
-      - banking-logs-network
+      - logintel-network
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
       interval: 30s
@@ -32,7 +32,7 @@ services:
 
   kibana:
     image: kibana:9.1.0
-    container_name: banking-logs-kibana
+    container_name: logintel-kibana
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -43,7 +43,7 @@ services:
     volumes:
       - kibana_data:/usr/share/kibana/data
     networks:
-      - banking-logs-network
+      - logintel-network
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:5601/api/status || exit 1"]
       interval: 30s
@@ -54,7 +54,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.mcp
-    container_name: banking-logs-mcp-server
+    container_name: logintel-mcp-server
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -70,7 +70,7 @@ services:
     ports:
       - "8000:8000"
     networks:
-      - banking-logs-network
+      - logintel-network
     volumes:
       - ./scripts:/app/scripts:ro
     healthcheck:
@@ -83,14 +83,14 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.ui
-    container_name: banking-logs-ui
+    container_name: logintel-ui
     depends_on:
       mcp-server:
         condition: service_healthy
     ports:
       - "3000:3000"
     networks:
-      - banking-logs-network
+      - logintel-network
     environment:
       - REACT_APP_MCP_SERVER_URL=http://localhost:8000
 
@@ -99,5 +99,5 @@ volumes:
   kibana_data:
 
 networks:
-  banking-logs-network:
+  logintel-network:
     driver: bridge

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile.prod
+    container_name: logintel-ui-prod
+    environment:
+      - NODE_ENV=production
+      - REACT_APP_MCP_SERVER_URL=https://${FIREBASE_PROJECT_ID}.web.app/api
+    ports:
+      - "80:80"
+    depends_on:
+      - mcp-server
+
+  mcp-server:
+    build:
+      context: ./mcp_server
+      dockerfile: Dockerfile.prod
+    container_name: logintel-mcp-prod
+    environment:
+      - ES_URL=${ES_URL}
+      - KIBANA_BASE_URL=${KIBANA_BASE_URL}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - ALLOWED_INDEX_PATTERNS=${ALLOWED_INDEX_PATTERNS}
+    ports:
+      - "8000:8000"
+
+networks:
+  default:
+    name: logintel-network-prod

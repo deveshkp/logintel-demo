@@ -1,5 +1,5 @@
 """
-Banking Logs AI Demo - MCP Server
+LogIntel - Banking Logs Intelligence Platform
 FastAPI server exposing Elasticsearch and Kibana tools via Model Context Protocol
 """
 

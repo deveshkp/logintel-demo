@@ -1,4 +1,4 @@
-# Banking Logs AI Demo
+# LogIntel: Banking Logs Intelligence
 
 Natural language banking log analysis system using Elasticsearch, Kibana, and Google Gemini LLM via MCP (Model Context Protocol) server.
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="256" fill="#2563eb"/>
+  
+  <!-- Log Lines (Intel style) -->
+  <g fill="#ffffff">
+    <!-- L -->
+    <rect x="128" y="156" width="24" height="200" rx="8"/>
+    <rect x="128" y="332" width="80" height="24" rx="8"/>
+    
+    <!-- I -->
+    <rect x="244" y="156" width="24" height="200" rx="8"/>
+    
+    <!-- Analytics Lines -->
+    <rect x="304" y="156" width="80" height="12" rx="6" opacity="0.9"/>
+    <rect x="304" y="196" width="60" height="12" rx="6" opacity="0.7"/>
+    <rect x="304" y="236" width="70" height="12" rx="6" opacity="0.9"/>
+    <rect x="304" y="276" width="50" height="12" rx="6" opacity="0.7"/>
+    <rect x="304" y="316" width="80" height="12" rx="6" opacity="0.9"/>
+  </g>
+  
+  <!-- Dot for intelligence -->
+  <circle cx="244" cy="132" r="12" fill="#ffffff"/>
+</svg>

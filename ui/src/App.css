@@ -62,20 +62,28 @@ body {
 }
 
 .header-icon {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .App-header h1 {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   margin: 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(to right, #ffffff, #e0e7ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .App-header p {
-  font-size: 0.875rem;
+  font-size: 1rem;
   opacity: 0.9;
   margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
 }
 
 .chat-container {

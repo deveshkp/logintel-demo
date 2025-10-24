@@ -147,7 +147,7 @@ function App() {
 
       if (queryType === 'greeting') {
         // Handle greetings
-        answer = `Hello! 👋 I'm LogWell, your log analytics assistant. I can help you analyze your banking system logs.\n\nTry asking me questions like:\n\n• "How many failed logins were there today?"\n• "Show me mobile authentication failures in the last 24 hours"\n• "What are the payment processing errors?"\n\nWhat would you like to know about your logs?`;
+        answer = `Hello! 👋 I'm LogIntel, your banking logs intelligence assistant. I can help you analyze your banking system logs.\n\nTry asking me questions like:\n\n• "How many failed logins were there today?"\n• "Show me mobile authentication failures in the last 24 hours"\n• "What are the payment processing errors?"\n\nWhat would you like to know about your logs?`;
         kibanaLink = null;
         dslQuery = null;
 
@@ -236,8 +236,8 @@ function App() {
       <header className="App-header">
         <div className="header-content">
           <Database className="header-icon" />
-          <h1>LogWell</h1>
-          <p>Ask questions about your banking system logs</p>
+          <h1>LogIntel</h1>
+          <p>Banking Logs Intelligence Platform</p>
         </div>
       </header>
 
@@ -245,7 +245,7 @@ function App() {
         <div className="messages-container">
           {messages.length === 0 && (
             <div className="welcome-message">
-              <h2>Welcome to LogWell</h2>
+              <h2>Welcome to LogIntel</h2>
               <p>Try asking questions like:</p>
               <ul>
                 <li>"How many failed logins were there on mobile today?"</li>
