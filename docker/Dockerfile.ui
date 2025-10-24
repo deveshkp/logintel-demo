@@ -1,0 +1,19 @@
+# UI Dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package files
+COPY ui/package*.json ./
+
+# Install dependencies (including dev dependencies for development server)
+RUN npm install
+
+# Copy source code
+COPY ui/ ./
+
+# Expose port
+EXPOSE 3000
+
+# Start the development server (which will read environment variables at runtime)
+CMD ["npm", "start"]

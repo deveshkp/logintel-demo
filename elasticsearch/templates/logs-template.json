@@ -1,0 +1,105 @@
+{
+  "index_patterns": ["logs-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.lifecycle.name": "logs-policy",
+      "index.lifecycle.rollover_alias": "logs-write"
+    },
+    "mappings": {
+      "_meta": {
+        "default_time_field": "@timestamp",
+        "primary_facets": ["event.outcome", "event.action", "app.channel", "source.ip", "device.os.name"],
+        "examples": ["user_login failure on mobile"]
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date"
+        },
+        "event": {
+          "properties": {
+            "action": {
+              "type": "keyword"
+            },
+            "outcome": {
+              "type": "keyword"
+            },
+            "reason": {
+              "type": "keyword"
+            }
+          }
+        },
+        "app": {
+          "properties": {
+            "channel": {
+              "type": "keyword"
+            },
+            "name": {
+              "type": "keyword"
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
+        },
+        "user": {
+          "properties": {
+            "id": {
+              "type": "keyword"
+            }
+          }
+        },
+        "source": {
+          "properties": {
+            "ip": {
+              "type": "ip"
+            }
+          }
+        },
+        "device": {
+          "properties": {
+            "os": {
+              "properties": {
+                "name": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "model": {
+              "type": "keyword"
+            }
+          }
+        },
+        "geo": {
+          "properties": {
+            "city_name": {
+              "type": "keyword"
+            }
+          }
+        },
+        "trace": {
+          "properties": {
+            "id": {
+              "type": "keyword"
+            }
+          }
+        },
+        "transaction": {
+          "properties": {
+            "amount": {
+              "type": "float"
+            },
+            "currency": {
+              "type": "keyword"
+            }
+          }
+        },
+        "message": {
+          "type": "text",
+          "index": false
+        }
+      }
+    }
+  }
+}

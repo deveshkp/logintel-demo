@@ -1,0 +1,31 @@
+{
+  "index_patterns": ["meta-dictionary"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0
+    },
+    "mappings": {
+      "properties": {
+        "field": {
+          "type": "keyword"
+        },
+        "description": {
+          "type": "text"
+        },
+        "valid_values": {
+          "type": "keyword"
+        },
+        "synonyms": {
+          "type": "keyword"
+        },
+        "example": {
+          "type": "keyword"
+        },
+        "domain": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
