@@ -88,23 +88,28 @@ The `render.yaml` will create 4 services:
 - **logintel-ui**: React frontend
 
 ### 3. Set Environment Variables
-In each service's settings, configure:
+**For Blueprint deployment**, the service URLs are automatically configured:
+- MCP Server connects to Elasticsearch using internal networking
+- UI connects to MCP Server using Render's service URLs
+- Kibana connects to Elasticsearch using internal networking
 
-**MCP Server:**
-- `GEMINI_API_KEY`: Your Google Gemini API key
-- `ES_URL`: Your Elasticsearch service URL
-- `KIBANA_BASE_URL`: Your Kibana service URL
-
-**UI:**
-- `REACT_APP_MCP_SERVER_URL`: Your MCP server URL
-
-**Kibana:**
-- `ELASTICSEARCH_HOSTS`: Your Elasticsearch service URL
+**Only required environment variable:**
+- `GEMINI_API_KEY`: Your Google Gemini API key (set in MCP Server service)
 
 ### 4. Deploy
 - Click "Create Blueprint" to deploy all services
+- Render will automatically:
+  - Create all 4 services simultaneously
+  - Configure internal networking between services
+  - Assign public URLs to each service
 - Wait for all services to become healthy
 - Access your application at the provided URLs
+
+**Service URLs after deployment:**
+- **UI**: `https://logintel-ui.onrender.com`
+- **MCP Server**: `https://logintel-mcp-server.onrender.com`
+- **Kibana**: `https://logintel-kibana.onrender.com`
+- **Elasticsearch**: `https://logintel-elasticsearch.onrender.com`
 
 ### Automated Docker Builds
 This repository includes GitHub Actions for automated Docker image builds:

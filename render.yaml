@@ -33,7 +33,7 @@ services:
     dockerfilePath: ./docker/Dockerfile.kibana
     envVars:
       - key: ELASTICSEARCH_HOSTS
-        sync: false # Set to your Elasticsearch URL
+        value: http://logintel-elasticsearch:9200
     healthCheckPath: /api/status
     plan: starter
 
@@ -44,9 +44,9 @@ services:
     dockerfilePath: ./docker/Dockerfile.mcp
     envVars:
       - key: ES_URL
-        sync: false # Set to your Elasticsearch URL
+        value: http://logintel-elasticsearch:9200
       - key: KIBANA_BASE_URL
-        sync: false # Set to your Kibana URL
+        value: https://logintel-kibana.onrender.com
       - key: GEMINI_API_KEY
         sync: false # Set in Render dashboard (secret)
       - key: GEMINI_MODEL_NAME
@@ -65,5 +65,5 @@ services:
     dockerfilePath: ./docker/Dockerfile.ui
     envVars:
       - key: REACT_APP_MCP_SERVER_URL
-        sync: false # Set to your MCP server URL
+        value: https://logintel-mcp-server.onrender.com
     plan: starter
