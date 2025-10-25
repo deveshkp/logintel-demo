@@ -117,6 +117,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 # Optional (defaults provided)
 ES_URL=http://localhost:9200
 KIBANA_BASE_URL=http://localhost:5601
+GEMINI_MODEL_NAME=gemini-2.0-flash-exp  # Uses Gemini 2.5 Pro
 ALLOWED_INDEX_PATTERNS=logs-*,meta-dictionary
 MAX_RESULT_SIZE=200
 ```

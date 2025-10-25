@@ -23,6 +23,7 @@ services:
       - ES_URL=${ES_URL}
       - KIBANA_BASE_URL=${KIBANA_BASE_URL}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_MODEL_NAME=gemini-2.0-flash-exp
       - ALLOWED_INDEX_PATTERNS=${ALLOWED_INDEX_PATTERNS}
     ports:
       - "8000:8000"
