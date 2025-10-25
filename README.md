@@ -54,6 +54,23 @@ docker-compose exec mcp-server python scripts/seed_all_data.py
 - "Show me payment failures from iOS devices"
 - "What were the most common errors last hour?"
 
+## Docker Hub Images
+
+Pre-built Docker images are available on Docker Hub for easy deployment:
+
+- **MCP Server**: `deveshpandey/logintel-mcp-server:latest`
+- **UI**: `deveshpandey/logintel-ui:latest`
+
+```bash
+# Pull and run with Docker Hub images
+docker-compose pull
+docker-compose up -d
+
+# Or run individual services
+docker run -d -p 8000:8000 --name mcp-server deveshpandey/logintel-mcp-server:latest
+docker run -d -p 3000:3000 --name ui deveshpandey/logintel-ui:latest
+```
+
 ## Development Setup
 
 ### Prerequisites
