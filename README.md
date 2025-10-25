@@ -71,6 +71,50 @@ docker run -d -p 8000:8000 --name mcp-server deveshpandey/logintel-mcp-server:la
 docker run -d -p 3000:3000 --name ui deveshpandey/logintel-ui:latest
 ```
 
+## Render Deployment
+
+Deploy to Render using the included `render.yaml` configuration:
+
+### 1. Connect Repository
+- Go to [Render Dashboard](https://dashboard.render.com)
+- Click "New" → "Blueprint"
+- Connect your GitHub repository: `deveshkp/logintel-demo`
+
+### 2. Configure Services
+The `render.yaml` will create 4 services:
+- **logintel-elasticsearch**: Elasticsearch database
+- **logintel-kibana**: Kibana visualization dashboard
+- **logintel-mcp-server**: FastAPI backend with Gemini AI
+- **logintel-ui**: React frontend
+
+### 3. Set Environment Variables
+In each service's settings, configure:
+
+**MCP Server:**
+- `GEMINI_API_KEY`: Your Google Gemini API key
+- `ES_URL`: Your Elasticsearch service URL
+- `KIBANA_BASE_URL`: Your Kibana service URL
+
+**UI:**
+- `REACT_APP_MCP_SERVER_URL`: Your MCP server URL
+
+**Kibana:**
+- `ELASTICSEARCH_HOSTS`: Your Elasticsearch service URL
+
+### 4. Deploy
+- Click "Create Blueprint" to deploy all services
+- Wait for all services to become healthy
+- Access your application at the provided URLs
+
+### Automated Docker Builds
+This repository includes GitHub Actions for automated Docker image builds:
+
+**Required GitHub Secrets:**
+- `DOCKERHUB_USERNAME`: Your Docker Hub username
+- `DOCKERHUB_TOKEN`: Your Docker Hub access token
+
+The workflow automatically builds and pushes updated images when you push to the `main` branch.
+
 ## Development Setup
 
 ### Prerequisites

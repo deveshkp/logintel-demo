@@ -1,0 +1,69 @@
+services:
+  # Elasticsearch - Database
+  - type: web
+    name: logintel-elasticsearch
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.elasticsearch
+    envVars:
+      - key: discovery.type
+        value: single-node
+      - key: xpack.security.enabled
+        value: false
+      - key: ES_JAVA_OPTS
+        value: -Xms512m -Xmx512m
+      - key: ELASTIC_PASSWORD
+        value: changeme
+      - key: bootstrap.memory_lock
+        value: true
+      - key: cluster.name
+        value: docker-cluster
+      - key: cluster.routing.allocation.disk.threshold_enabled
+        value: false
+    healthCheckPath: /_cluster/health
+    plan: starter
+    disk:
+      name: elasticsearch-data
+      mountPath: /usr/share/elasticsearch/data
+      sizeGB: 5
+
+  # Kibana - Visualization
+  - type: web
+    name: logintel-kibana
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.kibana
+    envVars:
+      - key: ELASTICSEARCH_HOSTS
+        sync: false # Set to your Elasticsearch URL
+    healthCheckPath: /api/status
+    plan: starter
+
+  # MCP Server - Main backend API
+  - type: web
+    name: logintel-mcp-server
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.mcp
+    envVars:
+      - key: ES_URL
+        sync: false # Set to your Elasticsearch URL
+      - key: KIBANA_BASE_URL
+        sync: false # Set to your Kibana URL
+      - key: GEMINI_API_KEY
+        sync: false # Set in Render dashboard (secret)
+      - key: GEMINI_MODEL_NAME
+        value: gemini-2.0-flash-exp
+      - key: ALLOWED_INDEX_PATTERNS
+        value: logs-*,meta-dictionary
+      - key: MAX_RESULT_SIZE
+        value: 200
+    healthCheckPath: /health
+    plan: starter
+
+  # UI - Frontend React application
+  - type: web
+    name: logintel-ui
+    runtime: docker
+    dockerfilePath: ./docker/Dockerfile.ui
+    envVars:
+      - key: REACT_APP_MCP_SERVER_URL
+        sync: false # Set to your MCP server URL
+    plan: starter

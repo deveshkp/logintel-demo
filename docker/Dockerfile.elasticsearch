@@ -1,0 +1,21 @@
+# Elasticsearch Dockerfile for Render
+FROM elasticsearch:9.1.0
+
+# Copy custom configuration if needed
+# COPY elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml
+
+# Set environment variables
+ENV discovery.type=single-node
+ENV xpack.security.enabled=false
+ENV ES_JAVA_OPTS="-Xms512m -Xmx512m"
+ENV ELASTIC_PASSWORD=changeme
+ENV bootstrap.memory_lock=true
+ENV cluster.name=docker-cluster
+ENV cluster.routing.allocation.disk.threshold_enabled=false
+
+# Expose ports
+EXPOSE 9200 9300
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
+    CMD curl -f http://localhost:9200/_cluster/health || exit 1

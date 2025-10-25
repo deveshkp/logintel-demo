@@ -1,0 +1,15 @@
+# Kibana Dockerfile for Render
+FROM kibana:9.1.0
+
+# Copy custom configuration if needed
+# COPY kibana.yml /usr/share/kibana/config/kibana.yml
+
+# Set environment variables
+ENV ELASTICSEARCH_HOSTS=http://localhost:9200
+
+# Expose port
+EXPOSE 5601
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=5 \
+    CMD curl -f http://localhost:5601/api/status || exit 1
