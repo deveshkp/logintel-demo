@@ -120,6 +120,8 @@ This repository includes GitHub Actions for automated Docker image builds:
 
 The workflow automatically builds and pushes updated images when you push to the `main` branch.
 
+**Architecture:** All images are built for `linux/amd64` to ensure compatibility with cloud platforms like Render.
+
 ## Development Setup
 
 ### Prerequisites

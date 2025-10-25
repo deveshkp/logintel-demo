@@ -30,6 +30,7 @@ jobs:
         file: ./docker/Dockerfile.mcp
         push: true
         tags: deveshpandey/logintel-mcp-server:latest
+        platforms: linux/amd64
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -40,6 +41,7 @@ jobs:
         file: ./docker/Dockerfile.ui
         push: true
         tags: deveshpandey/logintel-ui:latest
+        platforms: linux/amd64
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -50,6 +52,7 @@ jobs:
         file: ./docker/Dockerfile.elasticsearch
         push: true
         tags: deveshpandey/logintel-elasticsearch:latest
+        platforms: linux/amd64
         cache-from: type=gha
         cache-to: type=gha,mode=max
 
@@ -60,5 +63,6 @@ jobs:
         file: ./docker/Dockerfile.kibana
         push: true
         tags: deveshpandey/logintel-kibana:latest
+        platforms: linux/amd64
         cache-from: type=gha
         cache-to: type=gha,mode=max
