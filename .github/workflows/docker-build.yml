@@ -1,5 +1,7 @@
 name: Build and Push Docker Images
 
+# Trigger AMD64 builds for cloud deployment compatibility
+
 on:
   push:
     branches: [ main ]
